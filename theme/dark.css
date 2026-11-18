@@ -1,0 +1,1243 @@
+:root {
+    --bg: #0a0a0a; /* page background */
+    --bg-elev: #121212; /* sidebar, header, cards */
+    --bg-elev-2: #1a1a1a; /* hover, inputs */
+    --bg-active: #222222; /* selected/current */
+    --border: #262626;
+    --border-strong: #3a3a3a;
+
+    --text: #ededed; /* primary text */
+    --text-dim: #a3a3a3; /* secondary text */
+    --text-faint: #6b6b6b; /* dates, meta, read items */
+    --accent: #ffffff; /* the only "accent": pure white */
+
+    --radius: 8px;
+    --radius-sm: 6px;
+    --font: "Inter", "SF Pro Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-reading: "Inter", system-ui, sans-serif; /* try "Literata", Georgia, serif for articles */
+    --mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+
+    /* Origine's own variables, in case the base theme uses them */
+    --frss-background-color: var(--bg);
+    --frss-font-color-dark: var(--text);
+    --frss-border-color: var(--border);
+
+    color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+html, body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: var(--font) !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+a, a:visited {
+    color: var(--text);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+::selection {
+    background: #fff;
+    color: #000;
+}
+
+hr, .separator {
+    border-color: var(--border) !important;
+    background: var(--border) !important;
+}
+
+/* Scrollbars */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 10px;
+    border: 3px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ---------- Header ---------- */
+.header {
+    background: var(--bg) !important;
+    border-bottom: 1px solid var(--border) !important;
+    box-shadow: none !important;
+}
+
+.header > .item {
+    vertical-align: middle;
+}
+
+.header .item.title a, .header .item.title h1 {
+    color: var(--text) !important;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.header .item.title .logo {
+    filter: grayscale(1) brightness(1.6);
+}
+
+/* ---------- Inputs & forms ---------- */
+input, select, textarea, button,
+input[type="text"], input[type="search"], input[type="url"],
+input[type="email"], input[type="password"], input[type="number"] {
+    font-family: var(--font) !important;
+    background: var(--bg-elev-2) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: none !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: var(--text-dim) !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06) !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-faint) !important;
+}
+
+/* Search: input + button joined into one pill */
+.header .item.search form,
+.header .item.search .stick {
+    display: inline-flex !important;
+    align-items: stretch;
+    overflow: visible;
+}
+
+.header .item.search input {
+    height: 36px !important;
+    border-radius: 999px 0 0 999px !important;
+    border-right: none !important;
+    padding: 0 14px !important;
+    background: var(--bg-elev) !important;
+}
+
+.header .item.search .btn,
+.header .item.search button {
+    height: 36px !important;
+    min-height: 0 !important;
+    border-radius: 0 999px 999px 0 !important;
+    background: var(--bg-elev) !important;
+    border: 1px solid var(--border) !important;
+    border-left: none !important;
+    padding: 0 14px 0 10px !important;
+    margin: 0 !important;
+}
+
+.header .item.search .btn:hover,
+.header .item.search button:hover {
+    background: var(--bg-elev-2) !important;
+}
+
+.header .item.search input:focus {
+    box-shadow: none !important;
+    border-color: var(--border-strong) !important;
+}
+
+.header .item.search input:focus + .btn,
+.header .item.search input:focus + button {
+    border-color: var(--border-strong) !important;
+}
+
+/* ---------- Buttons ---------- */
+.btn, a.btn, button.btn, .stick .btn, .group .btn {
+    background: var(--bg-elev) !important;
+    background-image: none !important;
+    color: var(--text-dim) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: background .15s, color .15s, border-color .15s;
+}
+
+.btn:hover, a.btn:hover, button.btn:hover {
+    background: var(--bg-elev-2) !important;
+    color: var(--text) !important;
+    border-color: var(--border-strong) !important;
+}
+
+.btn.active, .btn:active, .stick .btn.active {
+    background: var(--bg-active) !important;
+    color: var(--accent) !important;
+}
+
+.btn-important, .btn.btn-important, button[type="submit"].btn-important {
+    background: var(--accent) !important;
+    color: #000 !important;
+    border-color: var(--accent) !important;
+    font-weight: 600;
+}
+
+.btn.btn-important:hover, a.btn.btn-important:hover, button.btn.btn-important:hover,
+.stick .btn.btn-important:hover {
+    background: #d4d4d4 !important;
+    border-color: #d4d4d4 !important;
+    color: #000 !important;
+}
+
+/* Icons inside white buttons (e.g. the "+" of Subscription management) → black */
+.btn-important .icon, .btn-important img,
+.btn.btn-important:hover .icon, .btn.btn-important:hover img,
+a.btn.btn-important:hover .icon, a.btn.btn-important:hover img,
+#new-article .icon, #new-article img {
+    filter: grayscale(1) brightness(0) !important;
+    opacity: 1 !important;
+}
+
+.btn-attention, .btn.btn-attention {
+    background: transparent !important;
+    color: #ff6b6b !important;
+    border-color: #5a2a2a !important;
+}
+
+/* Stuck button groups: remove inner radii */
+.stick {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.stick .btn {
+    border-radius: 0 !important;
+}
+
+.stick .btn:first-child {
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm) !important;
+}
+
+.stick .btn:last-child {
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
+}
+
+/* Monochrome icons */
+.icon, img.icon, .btn img, .nav_menu img {
+    filter: grayscale(1) brightness(1.4) contrast(0.9);
+}
+
+.btn:hover .icon, .btn.active .icon {
+    filter: grayscale(1) brightness(2);
+}
+
+/* ---------- Sidebar ---------- */
+.aside, #aside_feed, .aside.aside_feed, .aside .tree {
+    background: var(--bg) !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+.aside .tree-folder {
+    border: none !important;
+}
+
+.aside .tree-folder-title, .aside .category .title {
+    background: transparent !important;
+    color: var(--text-dim) !important;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: none !important;
+    position: relative;
+}
+
+.aside .tree-folder-title .title {
+    color: inherit !important;
+}
+
+/* Folder collapse toggles: no box around the chevron */
+.aside .tree-folder-title button,
+.aside .tree-folder-title .dropdown-toggle,
+.aside .tree-folder-title .btn {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.aside .tree-folder-title button:hover,
+.aside .tree-folder-title .dropdown-toggle:hover {
+    background: var(--bg-elev-2) !important;
+}
+
+.aside .tree-folder.category.all > .tree-folder-title,
+.aside .tree-folder.category.favorites > .tree-folder-title,
+.aside .tree-folder.category.important > .tree-folder-title {
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.92rem;
+    color: var(--text) !important;
+}
+
+.aside .tree-folder-items {
+    background: transparent !important;
+}
+
+.aside .item.feed, .aside .tree-folder-title {
+    margin: 1px 8px;
+    border-radius: var(--radius-sm);
+    transition: background .12s;
+}
+
+.aside .item.feed a, .aside .item.feed .item-title {
+    color: var(--text-dim) !important;
+}
+
+.aside .item.feed:hover, .aside .tree-folder-title:hover {
+    background: var(--bg-elev) !important;
+}
+
+.aside .item.feed:hover a {
+    color: var(--text) !important;
+}
+
+.aside .tree-folder.active > .tree-folder-title,
+.aside .item.feed.active {
+    background: var(--bg-active) !important;
+}
+
+.aside .item.feed.active a,
+.aside .tree-folder.active > .tree-folder-title .title {
+    color: var(--accent) !important;
+}
+
+/* Unread counters: subtle pill */
+.aside .item-title[data-unread]::after,
+.aside .title[data-unread]::after {
+    background: var(--bg-elev-2) !important;
+    color: var(--text-dim) !important;
+    border-radius: 999px;
+    padding: 1px 7px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    box-shadow: none !important;
+    /* keep the counter vertically centred on its row */
+    top: 50% !important;
+    transform: translateY(-50%);
+    line-height: 1.5 !important;
+    margin: 0 !important;
+}
+
+.aside .item.feed.active .item-title[data-unread]::after {
+    background: var(--border-strong) !important;
+    color: var(--accent) !important;
+}
+
+/* Folder rows: name takes all the space, counter pinned to the right edge */
+.aside .tree-folder-title {
+    display: flex !important;
+    align-items: center;
+}
+
+.aside .tree-folder-title .title {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto !important;
+    max-width: none !important;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 56px !important;
+}
+
+.aside .tree-folder-title .title[data-unread]::after {
+    position: absolute !important;
+    right: 6px !important;
+    left: auto !important;
+}
+
+.aside .tree-folder-title .title[data-unread="0"] {
+    padding-right: 8px !important;
+}
+
+/* Feed favicons: muted until hover (delete these 2 rules to keep colors) */
+.aside .item.feed img.favicon {
+    filter: grayscale(1) opacity(.7);
+    transition: filter .15s;
+}
+
+.aside .item.feed:hover img.favicon, .aside .item.feed.active img.favicon {
+    filter: none;
+}
+
+/* Feed error/empty states */
+.aside .item.feed.error .item-title {
+    color: #ff6b6b !important;
+}
+
+.aside .item.feed.empty .item-title {
+    color: var(--text-faint) !important;
+}
+
+/* Bottom config link area */
+.aside .configure-feeds, .aside .stick.configure-feeds {
+    background: var(--bg) !important;
+}
+
+/* ---------- Stream toolbar ---------- */
+.nav_menu {
+    background: var(--bg) !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 8px 12px !important;
+}
+
+/* Toolbar: each button group becomes a segmented control with spaced, rounded buttons */
+.nav_menu > .stick,
+.nav_menu > .group,
+.nav_menu > .dropdown,
+.nav_menu > .btn,
+.nav_menu > a.btn,
+.nav_menu > button {
+    margin: 0 5px !important;
+    vertical-align: middle;
+}
+
+.nav_menu .stick,
+.nav_menu .group {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 2px;
+    padding: 3px !important;
+    background: var(--bg-elev) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    overflow: visible !important;
+}
+
+/* Nested stick (e.g. the "Mark as read" + arrow pair) shouldn't get a second frame */
+.nav_menu .stick .stick,
+.nav_menu .stick .group {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.nav_menu .stick .btn,
+.nav_menu .stick a.btn,
+.nav_menu .stick button.btn,
+.nav_menu .group .btn,
+.nav_menu .stick .btn:first-child,
+.nav_menu .stick .btn:last-child,
+.nav_menu .stick .dropdown .btn {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 7px !important;
+    margin: 0 !important;
+    min-height: 30px;
+    padding: 0 10px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav_menu .stick .btn:hover,
+.nav_menu .group .btn:hover {
+    background: var(--bg-elev-2) !important;
+    color: var(--text) !important;
+}
+
+.nav_menu .stick .btn.active,
+.nav_menu .group .btn.active {
+    background: var(--border-strong) !important;
+    color: var(--accent) !important;
+}
+
+/* "Mark as read" label + its arrow: thin divider between them */
+.nav_menu .stick .dropdown {
+    display: inline-flex;
+}
+
+.nav_menu .stick .btn + .dropdown .btn,
+.nav_menu .stick .btn + .dropdown-toggle {
+    border-left: 1px solid var(--border) !important;
+    border-radius: 0 7px 7px 0 !important;
+}
+
+/* Lone buttons (sidebar toggle, filter, refresh) */
+.nav_menu > .btn,
+.nav_menu > a.btn,
+.nav_menu > .dropdown > .btn,
+.nav_menu > .dropdown > a.btn,
+.nav_menu .toggle_aside {
+    border-radius: 10px !important;
+    min-height: 36px;
+    min-width: 36px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toolbar icons: monochrome (removes the red envelope) */
+.nav_menu .icon, .nav_menu img.icon {
+    filter: grayscale(1) brightness(1.6) !important;
+    opacity: .8;
+}
+
+.nav_menu .btn:hover .icon, .nav_menu .btn.active .icon {
+    filter: grayscale(1) brightness(2.2) !important;
+    opacity: 1;
+}
+
+/* ---------- Article list ---------- */
+#stream, main.post, #stream .box {
+    background: var(--bg) !important;
+}
+
+.day {
+    background: var(--bg) !important;
+    color: var(--text-faint) !important;
+    border: none !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 18px 16px 6px !important;
+}
+
+/* Category name on the right of date separators: small label instead of big watermark */
+.day .name {
+    color: var(--text-faint) !important;
+    text-shadow: none !important;
+    font-size: 0.72rem !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    top: auto !important;
+    line-height: inherit !important;
+}
+
+.flux {
+    background: var(--bg) !important;
+    border-left: 2px solid transparent !important;
+    border-bottom: 1px solid var(--border) !important;
+    transition: background .12s;
+}
+
+.flux .flux_header {
+    background: transparent !important;
+    border: none !important;
+}
+
+.flux:hover:not(.current) {
+    background: var(--bg-elev) !important;
+}
+
+.flux:hover .flux_header {
+    background: transparent !important;
+}
+
+/* Unread = bright + bold, read = faded */
+.flux .item.title a, .flux .flux_header .title {
+    color: var(--text-faint) !important;
+    font-weight: 400;
+}
+
+.flux.not_read .item.title a,
+.flux.not_read .flux_header .title {
+    color: var(--text) !important;
+    font-weight: 600;
+}
+
+.flux.not_read:not(.current) {
+    background: var(--bg) !important;
+}
+
+.flux.not_read .flux_header {
+    background: transparent !important;
+}
+
+/* No coloured box when hovering a title */
+.flux .flux_header .item,
+.flux .flux_header .item:hover,
+.flux .flux_header .item.title:hover,
+.flux .flux_header .item.title a:hover,
+.flux .flux_header:hover .item.title {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.flux .flux_header .item.title a:hover {
+    color: var(--accent) !important;
+}
+
+.flux.current .item.title a {
+    color: var(--text) !important;
+}
+
+/* Kill Origine's per-cell hover tint (ID selector to out-rank the base theme) */
+#stream .flux .flux_header .item,
+#stream .flux .flux_header .item *,
+#stream .flux:hover .flux_header .item,
+#stream .flux:hover .flux_header .item *,
+#stream .flux .flux_header .item:hover,
+#stream .flux .flux_header .item:hover * {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Hover highlights the whole row */
+#stream .flux:not(.current):hover,
+#stream .flux:not(.current):hover .flux_header {
+    background-color: var(--bg-elev) !important;
+}
+
+#stream .flux:hover .item.title a,
+#stream .flux:hover .flux_header .title {
+    color: var(--accent) !important;
+}
+
+/* Current article: white bar on the left */
+.flux.current {
+    background: var(--bg-elev) !important;
+    border-left-color: var(--accent) !important;
+}
+
+/* Favorites: white instead of yellow */
+.flux.favorite:not(.current) {
+    background: var(--bg) !important;
+}
+
+.flux.favorite .flux_header {
+    background: transparent !important;
+}
+
+.flux .item.website a, .flux .website .websiteName {
+    color: var(--text-dim) !important;
+}
+
+.flux .item.date, .flux .date, .flux .flux_header .date {
+    color: var(--text-faint) !important;
+    font-size: 0.8rem;
+}
+
+.flux .summary {
+    color: var(--text-faint) !important;
+}
+
+/* Right-hand column: date + "open original" link icon */
+.flux .flux_header {
+    padding-right: 14px !important;
+}
+
+.flux .flux_header > .item.date {
+    padding-right: 12px !important;
+}
+
+.flux .flux_header > .item.link,
+.flux .flux_header > .item.link a {
+    width: 32px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.flux .flux_header > .item.link .icon,
+.flux .flux_header > .item.link img {
+    filter: grayscale(1) invert(1) brightness(0.75) !important;
+    opacity: .55;
+    width: 14px;
+    height: 14px;
+    transition: opacity .15s;
+}
+
+.flux:hover .flux_header > .item.link .icon,
+.flux.current .flux_header > .item.link .icon {
+    opacity: 1;
+}
+
+.flux .item.thumbnail img {
+    border-radius: var(--radius-sm);
+}
+
+/* ---------- Expanded article ---------- */
+.flux_content, .flux .flux_content, #stream.reader .flux {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+.content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 24px 40px !important;
+    font-family: var(--font-reading);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: #d6d6d6 !important;
+}
+
+.content > header h1, .content h1.title, .content .title a {
+    color: var(--accent) !important;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.content .author, .content .subtitle, .content .subtitle a {
+    color: var(--text-faint) !important;
+}
+
+.content h1, .content h2, .content h3, .content h4 {
+    color: var(--text) !important;
+    letter-spacing: -0.01em;
+}
+
+.content a {
+    color: var(--accent) !important;
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 3px;
+}
+
+.content a:hover {
+    text-decoration-color: var(--accent);
+}
+
+.content img, .content video, .content iframe {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+}
+
+.content figure figcaption {
+    color: var(--text-faint);
+    font-size: .88rem;
+}
+
+.content blockquote {
+    border-left: 2px solid var(--border-strong) !important;
+    background: transparent !important;
+    color: var(--text-dim) !important;
+    margin-left: 0;
+    padding: 2px 0 2px 18px !important;
+}
+
+.content code {
+    font-family: var(--mono);
+    font-size: .88em;
+    background: var(--bg-elev-2) !important;
+    color: var(--text) !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+.content pre {
+    background: var(--bg-elev) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius);
+    padding: 14px 16px !important;
+    overflow-x: auto;
+}
+
+.content pre code {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+}
+
+.content table {
+    border-collapse: collapse;
+}
+
+.content th, .content td {
+    border: 1px solid var(--border) !important;
+    padding: 6px 10px;
+}
+
+.content th {
+    background: var(--bg-elev) !important;
+}
+
+/* Article footer bar (tags, share, etc.) */
+.flux .flux_content .bottom, .flux ul.horizontal-list.bottom {
+    background: transparent !important;
+    border-top: 1px solid var(--border) !important;
+}
+
+/* ---------- Dropdowns ---------- */
+.dropdown-menu {
+    background: var(--bg-elev) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .6) !important;
+    padding: 6px !important;
+}
+
+.dropdown-menu::after {
+    display: none !important;
+}
+
+/* arrow */
+.dropdown-menu .item > a, .dropdown-menu .item > span, .dropdown-menu .item > .as-link,
+.dropdown-menu .item button {
+    color: var(--text-dim) !important;
+    border-radius: var(--radius-sm);
+    background: transparent !important;
+    border: none !important;
+}
+
+.dropdown-menu .item > a:hover, .dropdown-menu .item > .as-link:hover,
+.dropdown-menu .item button:hover {
+    background: var(--bg-elev-2) !important;
+    color: var(--text) !important;
+}
+
+.dropdown-menu .dropdown-header {
+    color: var(--text-faint) !important;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+/* Separators: a thin line, not a grey block (Origine puts .separator on the item itself) */
+.dropdown-menu .separator,
+.dropdown-menu .item.separator {
+    background: transparent !important;
+    border: none !important;
+    border-top: 1px solid var(--border) !important;
+    margin-top: 5px !important;
+    padding-top: 5px !important;
+    height: auto !important;
+}
+
+.dropdown-menu li.separator:empty {
+    padding: 0 !important;
+    margin: 5px 4px !important;
+}
+
+/* Consistent item rows with a fixed gutter for the checkmark */
+.dropdown-menu {
+    min-width: 220px;
+}
+
+.dropdown-menu .item {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu .item > a,
+.dropdown-menu .item > span,
+.dropdown-menu .item > .as-link,
+.dropdown-menu .item > button {
+    display: block !important;
+    width: 100%;
+    text-align: left;
+    padding: 6px 12px 6px 30px !important;
+    font-size: 0.86rem !important;
+    line-height: 1.4 !important;
+}
+
+.dropdown-menu .item::before,
+.dropdown-menu .item > a::before,
+.dropdown-menu .item > .as-link::before {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+.dropdown-menu .item.separator::before {
+    top: calc(50% + 5px);
+}
+
+/* Selected option: white + bold */
+.dropdown-menu .item.selected > a,
+.dropdown-menu .item.active > a,
+.dropdown-menu .item[aria-checked="true"] > a,
+.dropdown-menu .item > a[aria-checked="true"] {
+    color: var(--accent) !important;
+    font-weight: 600;
+}
+
+/* ---------- Panels, overlays, notifications ---------- */
+#panel, .slide-container .slide, .modal {
+    background: var(--bg-elev) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius) !important;
+}
+
+#overlay {
+    background: rgba(0, 0, 0, .75) !important;
+}
+
+.notification {
+    background: var(--bg-elev) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .6) !important;
+}
+
+.notification.good {
+    border-left: 3px solid #e5e5e5 !important;
+}
+
+.notification.bad {
+    border-left: 3px solid #ff6b6b !important;
+}
+
+#new-article {
+    background: var(--accent) !important;
+    color: #000 !important;
+    border-radius: 999px !important;
+    font-weight: 600;
+    border: none !important;
+}
+
+#new-article a {
+    color: #000 !important;
+}
+
+/* Load more / pagination */
+#load_more, .pagination, #stream-footer {
+    background: var(--bg) !important;
+    border: none !important;
+}
+
+.pagination .item a {
+    color: var(--text-dim) !important;
+}
+
+#bigMarkAsRead {
+    color: var(--text-faint) !important;
+}
+
+#bigMarkAsRead:hover {
+    color: var(--text) !important;
+    background: var(--bg-elev) !important;
+}
+
+/* ---------- Settings / config pages ---------- */
+.post, .prompt, .box {
+    color: var(--text) !important;
+}
+
+.box {
+    background: var(--bg-elev) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+}
+
+.box .box-title {
+    background: var(--bg-elev-2) !important;
+    color: var(--text) !important;
+    border-bottom: 1px solid var(--border) !important;
+    border-radius: var(--radius) var(--radius) 0 0 !important;
+}
+
+.box .box-content .item {
+    border-color: var(--border) !important;
+}
+
+.form-group .group-name, legend, label {
+    color: var(--text-dim) !important;
+}
+
+legend {
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.form-group:hover {
+    background: transparent !important;
+}
+
+table, th, td {
+    border-color: var(--border) !important;
+}
+
+th {
+    background: var(--bg-elev) !important;
+    color: var(--text) !important;
+}
+
+tr:hover td {
+    background: var(--bg-elev) !important;
+}
+
+.alert, .alert-warn, .alert-success, .alert-error {
+    background: var(--bg-elev) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius) !important;
+}
+
+.alert-error {
+    border-left: 3px solid #ff6b6b !important;
+}
+
+/* Config sidebar nav */
+.nav-list .item a {
+    color: var(--text-dim) !important;
+    border-radius: var(--radius-sm);
+}
+
+.nav-list .item a:hover {
+    background: var(--bg-elev) !important;
+    color: var(--text) !important;
+}
+
+.nav-list .item.active a {
+    background: var(--bg-active) !important;
+    color: var(--accent) !important;
+}
+
+.nav-list .nav-header {
+    color: var(--text-faint) !important;
+    background: transparent !important;
+    text-transform: uppercase;
+    font-size: .72rem;
+    letter-spacing: .06em;
+}
+
+/* ---------- Layout fixes ---------- */
+/* No horizontal scrollbar: padding/margins I added must stay inside the width */
+.flux, .flux_header, .flux .flux_header > .item,
+.aside .item.feed, .aside .tree-folder-title, .nav_menu {
+    box-sizing: border-box !important;
+}
+
+.aside .item.feed, .aside .tree-folder-title {
+    width: auto !important; /* margin 8px + width 100% was overflowing */
+    max-width: calc(100% - 16px) !important;
+}
+
+#stream, #stream .flux, #stream .flux_header {
+    max-width: 100% !important;
+}
+
+html, body, #global {
+    overflow-x: hidden !important;
+}
+
+/* safety net */
+
+/* Right column: keep the link icon clear of the scrollbar */
+#stream .flux .flux_header {
+    padding-right: 18px !important;
+}
+
+#stream .flux .flux_header > .item.link {
+    width: 36px !important;
+    min-width: 36px;
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+#stream .flux .flux_header > .item.link a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 28px !important;
+    height: 28px;
+    border-radius: 6px;
+    padding: 0 !important;
+}
+
+#stream .flux .flux_header > .item.link a:hover {
+    background-color: var(--bg-elev-2) !important;
+}
+
+/* Bottom-left prev / up / next bar: flat, matching the toolbar */
+#nav_entries {
+    background: var(--bg) !important;
+    border-top: 1px solid var(--border) !important;
+    box-shadow: none !important;
+    display: flex !important;
+    gap: 4px;
+    padding: 6px 8px !important;
+    box-sizing: border-box !important;
+}
+
+#nav_entries .btn, #nav_entries a.btn, #nav_entries button {
+    flex: 1;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 8px !important;
+    min-height: 34px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+}
+
+#nav_entries .btn:hover, #nav_entries a.btn:hover, #nav_entries button:hover {
+    background: var(--bg-elev-2) !important;
+}
+
+#nav_entries .icon {
+    filter: grayscale(1) brightness(1.6) !important;
+    opacity: .7;
+}
+
+#nav_entries .btn:hover .icon {
+    opacity: 1;
+    filter: grayscale(1) brightness(2.2) !important;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 840px) {
+    .aside {
+        box-shadow: 8px 0 30px rgba(0, 0, 0, .6) !important;
+    }
+
+    .content {
+        padding: 16px !important;
+        font-size: 1rem;
+    }
+
+    /* Header: Origine moves search into the toolbar on mobile, so hide the
+       header one (my inline-flex rule was forcing it back and overlapping the gear) */
+    .header .item.search,
+    .header .item.search form,
+    .header .item.search .stick {
+        display: none !important;
+    }
+
+    .header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 10px !important;
+        box-sizing: border-box;
+    }
+
+    .header .item.title {
+        flex: 1 1 auto;
+    }
+
+    .header .item.title .logo {
+        height: 26px;
+        width: auto;
+    }
+
+    .header .item.configure {
+        flex: 0 0 auto;
+    }
+
+    /* Toolbar: compact, wraps neatly with even gaps */
+    .nav_menu {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        padding: 8px !important;
+    }
+
+    .nav_menu > .stick,
+    .nav_menu > .group,
+    .nav_menu > .dropdown,
+    .nav_menu > .btn,
+    .nav_menu > a.btn,
+    .nav_menu > button {
+        margin: 0 !important;
+    }
+
+    .nav_menu .stick, .nav_menu .group {
+        padding: 2px !important;
+        gap: 1px;
+        border-radius: 9px !important;
+    }
+
+    .nav_menu .stick .btn,
+    .nav_menu .stick a.btn,
+    .nav_menu .stick button.btn,
+    .nav_menu .group .btn,
+    .nav_menu .stick .dropdown .btn {
+        min-height: 30px;
+        min-width: 32px;
+        padding: 0 7px !important;
+    }
+
+    .nav_menu > .btn, .nav_menu > a.btn,
+    .nav_menu > .dropdown > .btn, .nav_menu .toggle_aside {
+        min-height: 36px;
+        min-width: 36px;
+        border-radius: 9px !important;
+    }
+
+    .nav_menu .stick .btn {
+        font-size: 0.85rem;
+    }
+
+    /* Article rows: tighter, title gets the room */
+    .day {
+        padding: 14px 12px 6px !important;
+        font-size: 0.7rem;
+    }
+
+    #stream .flux .flux_header {
+        padding-right: 6px !important;
+    }
+
+    .flux .flux_header > .item.manage {
+        width: 30px !important;
+    }
+
+    .flux .flux_header > .item.website {
+        width: 26px !important;
+    }
+
+    .flux .flux_header > .item.website .websiteName {
+        display: none !important;
+    }
+
+    .flux .flux_header > .item.date {
+        display: none !important;
+    }
+
+    #stream .flux .flux_header > .item.link {
+        width: 30px !important;
+        min-width: 30px;
+    }
+
+    .flux .item.title a, .flux .flux_header .title {
+        font-size: 0.92rem;
+    }
+
+    /* Sidebar drawer */
+    .aside {
+        background: var(--bg) !important;
+        border-right: 1px solid var(--border) !important;
+    }
+
+    .aside .item.feed a, .aside .tree-folder-title {
+        min-height: 36px;
+    }
+
+    /* Bottom bar respects the iPhone home indicator */
+    #nav_entries {
+        padding-bottom: calc(6px + env(safe-area-inset-bottom)) !important;
+    }
+
+    /* Dropdowns don't run off-screen */
+    .dropdown-menu {
+        max-width: calc(100vw - 16px);
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
