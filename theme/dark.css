@@ -1,4 +1,12 @@
+/* =========================================================
+   FreshRSS — Mono Dark (User CSS)
+   Pure black/white/grey, no blue. Best on top of the
+   "Origine" theme (Settings → Display → Theme), dark mode off,
+   but it overrides most things so other bases mostly work too.
+   ========================================================= */
+
 :root {
+    /* ---- Palette: tweak here ---- */
     --bg: #0a0a0a; /* page background */
     --bg-elev: #121212; /* sidebar, header, cards */
     --bg-elev-2: #1a1a1a; /* hover, inputs */
@@ -516,7 +524,12 @@ a.btn.btn-important:hover .icon, a.btn.btn-important:hover img,
     padding: 18px 16px 6px !important;
 }
 
-/* Category name on the right of date separators: small label instead of big watermark */
+/* Hide the big category watermark on date separators */
+.transition .name {
+    display: none !important;
+}
+
+/* (old shrink attempt, kept for reference; has no effect while hidden) */
 .day .name {
     color: var(--text-faint) !important;
     text-shadow: none !important;
